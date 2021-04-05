@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 class SongList extends Component {
     render() {
+        console.log(this.props);
         return (
             <div>
                 SongList
@@ -11,6 +12,9 @@ class SongList extends Component {
     }
 }
 
+const mapStateToProps = (state: any) => {
+    return { songs: state.songs }
+}
 
 
-export default connect()(SongList);
+export default connect(mapStateToProps)(SongList);
