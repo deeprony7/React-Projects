@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { fetchPosts } from '../actions';
 
 interface PostListProps {
-    fetchPosts: () => {
-        type: string
-    }
+    fetchPosts: () => Promise<void>
+    // fetchPosts: () => {
+    //     type: string,
+    //     payload: any
+    // }
 }
 
 class PostList extends Component<PostListProps> {
