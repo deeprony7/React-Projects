@@ -1,14 +1,28 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useActions } from "../hooks/useActions";
 
 const RepositoriesList: React.FC = () => {
-    return (
-        <div>
-            <form>
-                <input type="text"/>
-                <button>Search</button>
-            </form>
-        </div>
-    )
-}
+  const [term, setTerm] = useState("");
+  const { searchRepositories } = useActions();
 
-export default RepositoriesList
+  const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    searchRepositories(term);
+  };
+
+  return (
+    <div>
+      <form onSubmit={onFormSubmit}>
+        <input
+          type="text"
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
+        />
+        <button>Search</button>
+      </form>
+    </div>
+  );
+};
+
+export default RepositoriesList;
