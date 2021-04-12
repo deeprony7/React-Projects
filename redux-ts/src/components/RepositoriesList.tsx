@@ -23,6 +23,9 @@ const RepositoriesList: React.FC = () => {
         />
         <button>Search</button>
       </form>
+      {error && <h3>{error}</h3>}
+      {loading && <h3>Loading...</h3>}
+      {!error && !loading && data.map((name) => <div>{name}</div>)}
     </div>
   );
 };
