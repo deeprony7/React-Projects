@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
 
 const RepositoriesList: React.FC = () => {
   const [term, setTerm] = useState("");
   const { searchRepositories } = useActions();
+  const { data, error, loading } = useSelector((state) => state.repositories);
 
   const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
