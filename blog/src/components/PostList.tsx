@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPosts } from "../actions";
+import UserHeader from "./UserHeader";
 
 interface PostListProps {
   fetchPosts: () => Promise<void>;
@@ -29,6 +30,7 @@ class PostList extends Component<PostListProps> {
               <h2>{post.title}</h2>
               <h2>{post.body}</h2>
             </div>
+            < UserHeader userId={post.userId}/>
           </div>
         </div>
       );
