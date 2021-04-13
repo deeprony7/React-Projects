@@ -4,7 +4,14 @@ import { fetchPosts } from "../actions";
 
 interface PostListProps {
   fetchPosts: () => Promise<void>;
-  posts: any;
+  posts: PostItem[];
+}
+
+interface PostItem {
+  body: string;
+  id: number;
+  title: string;
+  userId: number;
 }
 
 class PostList extends Component<PostListProps> {
@@ -12,9 +19,24 @@ class PostList extends Component<PostListProps> {
     this.props.fetchPosts();
   }
 
+  renderList() {
+    return this.props.posts.map((post) => {
+      return (
+        <div className="item" key={post.id}>
+          <i className="large middle aligned icon user" />
+          <div className="content">
+            <div className="description">
+              <h2>{post.title}</h2>
+              <h2>{post.body}</h2>
+            </div>
+          </div>
+        </div>
+      );
+    });
+  }
+
   render() {
-    console.log(this.props.posts);
-    return <div>Post List</div>;
+    return <div className="ui relaxed divided list">{this.renderList()}</div>;
   }
 }
 
