@@ -5,6 +5,12 @@ import { fetchUser } from "../actions";
 interface UserHeaderProps {
   userId: number;
   fetchUser: (userId: number) => Promise<void>;
+  users: User[]
+}
+
+interface User {
+  id: number,
+  name: string
 }
 
 class UserHeader extends Component<UserHeaderProps> {
@@ -13,10 +19,22 @@ class UserHeader extends Component<UserHeaderProps> {
   }
 
   render() {
-    return <div>User Header</div>;
+    const user = this.props.users.find((user: User) => {
+      return user.id === this.props.userId
+    })
+
+    if (!user) {
+      return null;
+    }
+
+    return <div className="header">{user.name}</div>;
   }
 }
 
-export default connect(null, {
+const mapStateToProps = (state: any) => {
+  return { users: state.users };
+};
+
+export default connect(mapStateToProps, {
   fetchUser: fetchUser,
 })(UserHeader);
