@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Dispatch } from "react";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions";
 
 interface UserHeaderProps {
   userId: number;
-  fetchUser: (userId: number) => Promise<void>;
+  fetchUser: (userId: number) => any;
   user: User;
 }
 
