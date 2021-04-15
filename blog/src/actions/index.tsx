@@ -8,11 +8,13 @@ type MyExtraArg = undefined;
 type MyThunkDispatchProp = ThunkDispatch<MyRootState, MyExtraArg, Action>;
 
 export const fetchPostsandUsers = () => async (
-  dispatch: MyThunkDispatchProp
+  dispatch: MyThunkDispatchProp,
+  getState: any
 ) => {
-  console.log("About to fetch posts");
   await dispatch(fetchPosts());
-  console.log("Fetched posts!");
+
+  const userIds = _.uniq(_.map(getState().posts, "userId"));
+  userIds.forEach(id => dispatch(fetchUser(id)))
 };
 
 export const fetchPosts = () => {

@@ -1,6 +1,5 @@
 import React, { Component, Dispatch } from "react";
 import { connect } from "react-redux";
-import { fetchUser } from "../actions";
 
 interface UserHeaderProps {
   userId: number;
@@ -14,10 +13,6 @@ interface User {
 }
 
 class UserHeader extends Component<UserHeaderProps> {
-  componentDidMount() {
-    this.props.fetchUser(this.props.userId);
-  }
-
   render() {
     const { user } = this.props;
 
@@ -35,6 +30,4 @@ const mapStateToProps = (state: any, ownProps: any) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  fetchUser: fetchUser,
-})(UserHeader);
+export default connect(mapStateToProps)(UserHeader);
