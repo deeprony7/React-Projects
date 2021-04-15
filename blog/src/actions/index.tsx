@@ -7,6 +7,14 @@ type MyRootState = {};
 type MyExtraArg = undefined;
 type MyThunkDispatchProp = ThunkDispatch<MyRootState, MyExtraArg, Action>;
 
+export const fetchPostsandUsers = () => async (
+  dispatch: MyThunkDispatchProp
+) => {
+  console.log("About to fetch posts");
+  await dispatch(fetchPosts());
+  console.log("Fetched posts!");
+};
+
 export const fetchPosts = () => {
   return async (dispatch: MyThunkDispatchProp) => {
     const response = await jsonPlaceholder.get("/posts");
@@ -15,14 +23,22 @@ export const fetchPosts = () => {
   };
 };
 
-export const fetchUser = (id: number) => {
-  return (dispatch: MyThunkDispatchProp) => {
-    _fetchUser(id, dispatch);
-  };
-};
+// export const fetchUser = (id: number) => {
+//   return (dispatch: MyThunkDispatchProp) => {
+//     _fetchUser(id, dispatch);
+//   };
+// };
 
-const _fetchUser = _.memoize(async (id, dispatch) => {
-  const response = await jsonPlaceholder.get(`./users/${id}`);
+// const _fetchUser = _.memoize(async (id, dispatch) => {
+//   const response = await jsonPlaceholder.get(`./users/${id}`);
+
+//   dispatch({ type: "FETCH_USER", payload: response.data });
+// });
+
+export const fetchUser = (id: number) => async (
+  dispatch: MyThunkDispatchProp
+) => {
+  const response = await jsonPlaceholder.get(`/users/${id}`);
 
   dispatch({ type: "FETCH_USER", payload: response.data });
-});
+};
