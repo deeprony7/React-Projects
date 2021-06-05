@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchStream, editStream } from "../../actions";
@@ -19,7 +20,10 @@ const StreamEdit = (props) => {
   return (
     <div>
       <h3>Edit a Stream</h3>
-      <StreamForm initialValues={props.stream} onSubmit={onSubmit} />
+      <StreamForm
+        initialValues={_.pick(props.stream, ["title", "description"])}
+        onSubmit={onSubmit}
+      />
     </div>
   );
 };
