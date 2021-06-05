@@ -1,21 +1,33 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchStream } from "../../actions";
+import { fetchStream, editStream } from "../../actions";
+import StreamForm from "./StreamForm";
 
 const StreamEdit = (props) => {
   useEffect(() => {
     props.fetchStream(props.match.params.id);
   }, []);
 
+  const onSubmit = (formValues) => {
+    console.log(formValues);
+  };
+
   if (!props.stream) {
-      return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
-  return <div>{props.stream.title}</div>;
+  return (
+    <div>
+      <h3>Edit a Stream</h3>
+      <StreamForm initialValues={props.stream} onSubmit={onSubmit} />
+    </div>
+  );
 };
 
 const mapStateToProps = (state, ownProps) => {
   return { stream: state.streams[ownProps.match.params.id] };
 };
 
-export default connect(mapStateToProps, { fetchStream })(StreamEdit);
+export default connect(mapStateToProps, { fetchStream, editStream })(
+  StreamEdit
+);
