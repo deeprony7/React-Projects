@@ -16,17 +16,29 @@ const StreamDelete = (props) => {
     </div>
   );
 
+  const renderContent = () => {
+    if (!props.stream) {
+      return "Are you sure you want to delet this stream?";
+    }
+
+    return `Are you sure you want to delete the stream with title: ${props.stream.title}`;
+  };
+
   return (
-    <div>
-      StreamDelete
+    <>
       <Modal
         title="Delete Stream"
-        content="Are you sure you want to delete this stream?"
+        content={renderContent()}
         actions={renderActions}
         onDismiss={() => history.push("/")}
       />
-    </div>
+      {renderContent}
+    </>
   );
 };
 
-export default connect(null, { fetchStream })(StreamDelete);
+const mapStateToProps = (state, ownProps) => {
+  return { stream: state.streams[ownProps.match.params.id] };
+};
+
+export default connect(mapStateToProps, { fetchStream })(StreamDelete);
