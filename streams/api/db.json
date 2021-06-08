@@ -11,12 +11,6 @@
       "id": 2
     },
     {
-      "title": "the third title",
-      "description": "some random description",
-      "userId": "107236197631914995471",
-      "id": 3
-    },
-    {
       "title": "Programmatic Navigation",
       "description": "Implementing Programmatic Navigation. Page should redirect to StreamList route",
       "userId": "107236197631914995471",
