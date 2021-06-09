@@ -15,9 +15,6 @@ const StreamShow = ({ fetchStream, match, stream }) => {
 
   useEffect(() => {
     const buildPlayer = () => {
-      if (!stream) {
-        return;
-      }
       const { id } = match.params;
 
       const player = flv.createPlayer({
@@ -27,7 +24,18 @@ const StreamShow = ({ fetchStream, match, stream }) => {
       player.attachMediaElement(videoRef.current);
       player.load();
     };
+
+    if (!stream) {
+      return;
+    }
+
     buildPlayer();
+
+    return (player) => {
+      if (player) {
+        player.destroy();
+      }
+    };
   }, [stream, match.params.id]);
 
   if (!stream) {

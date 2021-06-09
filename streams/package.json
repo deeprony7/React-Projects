@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "final-form": "^4.20.2",
+    "react-final-form": "^6.5.3"
+  }
+}
