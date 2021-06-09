@@ -7,16 +7,28 @@ const StreamShow = ({ fetchStream, match, stream }) => {
   const videoRef = useRef();
 
   useEffect(() => {
-    const {id} = match.params
+    console.log(videoRef);
+    const { id } = match.params;
 
     fetchStream(id);
-    const player = flv.createPlayer({
-      type: 'flv',
-      url: 'http://localhost:8000/live'
-    })
-    player.attachMediaElement(videoRef.current)
-    player.load()
-  }, []);
+  }, [match.params.id]);
+
+  useEffect(() => {
+    const buildPlayer = () => {
+      if (!stream) {
+        return;
+      }
+      const { id } = match.params;
+
+      const player = flv.createPlayer({
+        type: "flv",
+        url: `http://localhost:8000/live/${id}.flv`,
+      });
+      player.attachMediaElement(videoRef.current);
+      player.load();
+    };
+    buildPlayer();
+  }, [stream, match.params.id]);
 
   if (!stream) {
     return <div>Loading...</div>;
