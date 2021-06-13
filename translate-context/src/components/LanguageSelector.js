@@ -9,10 +9,12 @@ export default class LanguageSelector extends Component {
       <div>
         Select a language:
         <i
+          data-testid="us"
           className="flag us"
           onClick={() => this.context.onLanguageChange("english")}
         />
         <i
+          data-testid="nl"
           className="flag nl"
           onClick={() => this.context.onLanguageChange("dutch")}
         />
