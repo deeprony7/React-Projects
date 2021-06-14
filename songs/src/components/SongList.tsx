@@ -11,7 +11,7 @@ class SongList extends Component<any> {
     renderList() {
         return this.props.songs.map((song: SongDetailProp) => {
             return (
-                <div className="item" key={song.title}>
+                <div className="item" data-testid={song.title} key={song.title}>
                     <div className="right floated content">
                         <button
                             className="ui button primary"

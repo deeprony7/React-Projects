@@ -12,7 +12,7 @@ const SongDetail = ({ song }: { song: SongProp }) => {
     }
 
     return (
-        <div>
+        <div data-testid="song-detail">
             <h3>Details for:</h3>
             <p>
                 Title: {song.title}
